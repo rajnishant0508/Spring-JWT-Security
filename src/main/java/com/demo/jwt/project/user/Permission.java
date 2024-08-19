@@ -1,7 +1,5 @@
 package com.demo.jwt.project.user;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +24,6 @@ public class Permission {
 	private String authorityType;
 	
 	@ManyToOne()
-	@JsonBackReference
 	private Role role;
 
 }
