@@ -3,7 +3,6 @@ package com.demo.jwt.project.user;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -41,6 +40,5 @@ public class Role {
 	private List<User> user;
 	
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
-	@JsonManagedReference
 	private List<Permission> permissions;
 }

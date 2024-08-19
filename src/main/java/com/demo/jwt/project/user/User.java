@@ -9,8 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 
 import jakarta.persistence.Entity;
@@ -55,7 +53,6 @@ public class User implements UserDetails{
     @JoinTable(name = "USER_ROLE_MAPPING", 
                joinColumns = @JoinColumn(name = "user_id"), 
                inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonManagedReference
     private List<Role> role;
 
 	@Override
