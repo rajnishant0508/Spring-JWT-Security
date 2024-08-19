@@ -22,6 +22,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfiguration {
+	
+	private static final String[] WHITE_LIST_URL = { 
+			"/crackit/v1/auth/*",
+			"/api/v1/auth/**", 
+			"/v2/api-docs", 
+			"/v3/api-docs",
+			"/v3/api-docs/**", 
+			"/swagger-resources", 
+			"/swagger-resources/**", 
+			"/configuration/ui",
+			"/configuration/security", 
+			"/swagger-ui/**", 
+			"/webjars/**", 
+			"/swagger-ui.html"
+			};
 
 	@Autowired
     private AuthenticationProvider authenticationProvider;
@@ -34,7 +49,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/crackit/v1/auth/*")
+                        req.requestMatchers((WHITE_LIST_URL))
                                 .permitAll()
                                 .requestMatchers("/crackit/v1/management/**").hasAnyRole("ADMIN", "MEMBER")
                                 .requestMatchers(GET, "/crackit/v1/management/**").hasAnyAuthority("admin:read", "management:read")
