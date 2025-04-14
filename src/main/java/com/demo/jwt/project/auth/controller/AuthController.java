@@ -1,5 +1,9 @@
 package com.demo.jwt.project.auth.controller;
 
+import java.lang.module.ModuleDescriptor.Builder;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.jwt.project.user.User;
+import com.demo.jwt.project.auth.dto.RegisterUserRequest;
+import com.demo.jwt.project.auth.dto.UserRolesRequest;
+import com.demo.jwt.project.entity.Role;
+import com.demo.jwt.project.entity.User;
 
 @RestController
 @RequestMapping("/crackit/v1/auth")
@@ -21,7 +28,24 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(
-            @RequestBody RegisterRequest registerRequest) {
+            @RequestBody RegisterUserRequest registerUserRequest) {
+    	
+    	List<UserRolesRequest> userRequestRoles = registerUserRequest.getRole();
+    	List<Role> roles = new ArrayList<>();
+    	for(UserRolesRequest role : userRequestRoles) {
+    		Role newRole = new Role();
+    		newRole.setId(role.getId());
+    		newRole.setRoleType(role.getRoleType());
+    		roles.add(newRole);
+    	}
+    	
+    	RegisterRequest registerRequest = RegisterRequest.builder()
+    			.email(registerUserRequest.getEmail())
+    			.firstName(registerUserRequest.getFirstName())
+    			.lastName(registerUserRequest.getLastName())
+    			.password(registerUserRequest.getPassword())
+    			.role(roles)
+    			.build();
     	RegisterResponse authResponse = authService.register(registerRequest);
         return  ResponseEntity.ok(authResponse);
     }

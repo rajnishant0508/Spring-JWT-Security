@@ -2,7 +2,7 @@ package com.demo.jwt.project.auth.controller;
 
 import java.util.List;
 
-import com.demo.jwt.project.user.Role;
+import com.demo.jwt.project.entity.Role;
 
 //import com.demo.jwt.project.enums.Role;
 
