@@ -14,11 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.demo.jwt.project.config.JwtService;
+import com.demo.jwt.project.entity.Role;
+import com.demo.jwt.project.entity.User;
 import com.demo.jwt.project.repository.RoleRepository;
 import com.demo.jwt.project.repository.UserRepository;
 import com.demo.jwt.project.service.EmailService;
-import com.demo.jwt.project.user.Role;
-import com.demo.jwt.project.user.User;
 
 @Service
 public class AuthService {

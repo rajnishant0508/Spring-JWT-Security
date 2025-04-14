@@ -1,4 +1,4 @@
-package com.demo.jwt.project.user;
+package com.demo.jwt.project.entity;
 
 import java.util.Collection;
 import java.util.Date;

@@ -14,8 +14,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.demo.jwt.project.dto.PermissionDto;
 import com.demo.jwt.project.dto.RoleDto;
 import com.demo.jwt.project.dto.UserDto;
+import com.demo.jwt.project.entity.User;
 import com.demo.jwt.project.repository.UserRepository;
-import com.demo.jwt.project.user.User;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

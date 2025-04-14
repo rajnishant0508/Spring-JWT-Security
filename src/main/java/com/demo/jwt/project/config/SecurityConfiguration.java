@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SecurityConfiguration {
 	
 	private static final String[] WHITE_LIST_URL = { 
-			"/crackit/v1/auth/*",
+			"/crackit/v1/auth/**",
 			"/api/v1/auth/**", 
 			"/v2/api-docs", 
 			"/v3/api-docs",
@@ -47,15 +47,16 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)                
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers((WHITE_LIST_URL))
-                                .permitAll()
-                                .requestMatchers("/crackit/v1/management/**").hasAnyRole("ADMIN", "MEMBER")
-                                .requestMatchers(GET, "/crackit/v1/management/**").hasAnyAuthority("admin:read", "management:read")
-                                .requestMatchers(POST, "/crackit/v1/management/**").hasAnyAuthority("admin:create", "management:create")
-                                .anyRequest()
-                                .authenticated())
+                req.requestMatchers(GET, "/crackit/v1/management/**").hasAnyAuthority("management:read")
+                   .requestMatchers(POST, "/crackit/v1/management/**").hasAnyAuthority("management:create")
+                   .requestMatchers(GET, "/crackit/v1/admin/**").hasAnyAuthority("admin:read")
+                   .requestMatchers(POST, "/crackit/v1/admin/**").hasAnyAuthority("admin:create")
+                   .requestMatchers("/crackit/v1/management/**").hasAnyRole("ADMIN", "MEMBER")
+                   .requestMatchers(WHITE_LIST_URL).permitAll()
+                   .anyRequest()
+                   .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
