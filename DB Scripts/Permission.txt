@@ -1,0 +1,8 @@
+insert into security.permission values
+(1, 'admin:read', 1),
+(2, 'admin:create', 1),
+(3, 'management:read', 3),
+(4, 'management:create', 3),
+(5, 'user:read', 2),
+(6, 'user:delete', 2),
+(7, 'user:update', 2)
