@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"firstName\": \"Nishant\",\r\n  \"lastName\": \"Raj\",\r\n  \"email\": \"nishantraj7007@gmail.com\",\r\n  \"password\": \"Nishant@123\",\r\n  \"role\": [\r\n    {\r\n      \"id\": 1,\r\n      \"roleType\": \"ADMIN\"\r\n    }\r\n  ]\r\n}",
+					"raw": "{\r\n  \"firstName\": \"Nishant\",\r\n  \"lastName\": \"Raj\",\r\n  \"email\": \"nishantraj7007@gmail.com\",\r\n  \"password\": \"123\",\r\n  \"role\": [\r\n    {\r\n      \"id\": 1,\r\n      \"roleType\": \"ADMIN\"\r\n    }\r\n  ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Nishant\",\r\n    \"lastName\": \"Raj\",\r\n    \"email\": \"nishantraj7007@gmail.com\",\r\n    \"password\": \"Nishant@123\",\r\n    \"role\": [\r\n        {\r\n            \"id\": 3,\r\n            \"roleType\": \"MEMBER\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Nishant\",\r\n    \"lastName\": \"Raj\",\r\n    \"email\": \"nishantraj7007@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"role\": [\r\n        {\r\n            \"id\": 3,\r\n            \"roleType\": \"MEMBER\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,7 +79,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Nishant\",\r\n    \"lastName\": \"Raj\",\r\n    \"email\": \"nishantraj7007@gmail.com\",\r\n    \"password\": \"Nishant@123\",\r\n    \"role\": [\r\n        {\r\n            \"id\": 3,\r\n            \"roleType\": \"MEMBER\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"roleType\": \"ADMIN\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Nishant\",\r\n    \"lastName\": \"Raj\",\r\n    \"email\": \"nishantraj7007@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"role\": [\r\n        {\r\n            \"id\": 3,\r\n            \"roleType\": \"MEMBER\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"roleType\": \"ADMIN\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
