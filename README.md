@@ -39,6 +39,8 @@ This project is a **Spring Boot** application that implements **JWT (JSON Web To
 
 ---
 
+- Postman collection is also available only for the Signup APIs : **How a end user can put there data. Here we only have 2 roles i.e (1, ADMIN) and (2, MEMBER)  and are some set of APIs exposed once you get the JWT token try to hit the Member and Admin related APIs.**   
+
 ## Access Swaggger UI : https://spring-jwt-security-production.up.railway.app/swagger-ui/index.html#/
 
 ## Hosted on Railway : (https://railway.com/) 
