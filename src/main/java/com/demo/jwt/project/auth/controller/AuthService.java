@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.demo.jwt.project.auth.exception.GlobalExceptionHandler;
 import com.demo.jwt.project.config.JwtService;
 import com.demo.jwt.project.entity.Role;
 import com.demo.jwt.project.entity.User;
@@ -210,14 +211,7 @@ public class AuthService {
 	                .emailMessage(emailStatus)
 	                .build();
     	}else {
-    		return RegisterResponse
-	        		.builder()
-	        		.firstName(user.get().getFirstName())
-	                .lastName(user.get().getLastName())
-	                .email(user.get().getEmail())
-	                .verified(false)
-	                .emailMessage("user does not exist")
-	                .build();
+    		throw new GlobalExceptionHandler("User does not exist with this email id");
     	}
 	}
 

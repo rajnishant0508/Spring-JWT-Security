@@ -1,6 +1,5 @@
 package com.demo.jwt.project.auth.controller;
 
-import java.lang.module.ModuleDescriptor.Builder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.jwt.project.auth.dto.RegisterUserRequest;
 import com.demo.jwt.project.auth.dto.UserRolesRequest;
+import com.demo.jwt.project.auth.exception.GlobalExceptionHandler;
 import com.demo.jwt.project.entity.Role;
 import com.demo.jwt.project.entity.User;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/crackit/v1/auth")
@@ -28,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(
-            @RequestBody RegisterUserRequest registerUserRequest) {
+            @Valid @RequestBody RegisterUserRequest registerUserRequest) {
     	
     	List<UserRolesRequest> userRequestRoles = registerUserRequest.getRole();
     	List<Role> roles = new ArrayList<>();
@@ -54,6 +56,17 @@ public class AuthController {
     public ResponseEntity<AuthenticationResponse> emailOtpVerification(
     		@RequestParam(name = "email", required = true) String email,
     		@RequestParam(name = "otp", required = true) String otp) {
+    	 
+    	// Validate Email Format
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            throw new GlobalExceptionHandler("Invalid email format");
+        }
+        
+        // Validate OTP: Only digits and exactly 6 characters
+        if (!otp.matches("^\\d{6}$")) {
+        	throw new GlobalExceptionHandler("OTP must be a 6-digit number");
+        }
+        
     	AuthenticationResponse authResponse = authService.emailOtpVerification(email, otp);
         return  ResponseEntity.ok(authResponse);
     }
@@ -62,6 +75,17 @@ public class AuthController {
     public ResponseEntity<RegisterResponse> forgetPassword(
     		@RequestParam(name = "email", required = true) String email,
     		@RequestParam(name = "newPassword", required = true) String newPassword) {
+    	
+    	// Validate Email Format
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            throw new GlobalExceptionHandler("Invalid email format");
+        }
+    	
+    	// Validate Password (at least 8 characters, one letter, one digit, one special character)
+        if (!newPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,20}$")) {
+        	 throw new GlobalExceptionHandler("Password must be 8-20 characters and include at least one letter, one number, and one special character");
+        }
+        
     	return new ResponseEntity<RegisterResponse>(authService.forgetPassword(email, newPassword), HttpStatus.OK);
     }
 
